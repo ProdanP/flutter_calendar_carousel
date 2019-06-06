@@ -77,6 +77,7 @@ class CalendarCarousel<T> extends StatefulWidget {
   final bool staticSixWeekFormat;
   final bool isScrollable;
   final bool showOnlyCurrentMonthDate;
+  final DateTime initialDate;
 
   CalendarCarousel({
     this.viewportFraction = 1.0,
@@ -140,6 +141,7 @@ class CalendarCarousel<T> extends StatefulWidget {
     this.staticSixWeekFormat = false,
     this.isScrollable = true,
     this.showOnlyCurrentMonthDate = false,
+    this.initialDate
   });
 
   @override
@@ -160,6 +162,7 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
   List<DateTime> _dates = List(3);
   List<List<DateTime>> _weeks = List(3);
   DateTime _selectedDate = DateTime.now();
+  DateTime _initialDate = DateTime.now();
   int _startWeekday = 0;
   int _endWeekday = 0;
   DateFormat _localeDate;
@@ -194,6 +197,9 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
 
     if (widget.selectedDateTime != null)
       _selectedDate = widget.selectedDateTime;
+    if(widget.initialDate != null){
+      _initialDate = widget.initialDate;
+    }
     _setDate();
   }
 
@@ -208,6 +214,9 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
     if (_isReloadSelectedDate) {
       if (widget.selectedDateTime != null)
         _selectedDate = widget.selectedDateTime;
+      if(widget.initialDate != null){
+        _initialDate = widget.initialDate;
+      }
       _setDatesAndWeeks();
     } else {
       _isReloadSelectedDate = true;
@@ -506,9 +515,9 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
                         this._selectedDate.month == weekDays[index].month &&
                         this._selectedDate.day == weekDays[index].day;
                     bool isPrevMonthDay =
-                        weekDays[index].month < this._selectedDate.month;
+                        weekDays[index].month < this._initialDate.month;
                     bool isNextMonthDay =
-                        weekDays[index].month > this._selectedDate.month;
+                        weekDays[index].month > this._initialDate.month;
                     bool isThisMonthDay = !isPrevMonthDay && !isNextMonthDay;
 
                     DateTime now = DateTime(weekDays[index].year, weekDays[index].month, weekDays[index].day);
@@ -701,11 +710,11 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
   void _setDatesAndWeeks() {
     /// Setup default calendar format
     DateTime date0 =
-        DateTime(this._selectedDate.year, this._selectedDate.month - 1, 1);
+        DateTime(this._initialDate.year, this._initialDate.month - 1, 1);
     DateTime date1 =
-        DateTime(this._selectedDate.year, this._selectedDate.month, 1);
+        DateTime(this._initialDate.year, this._initialDate.month, 1);
     DateTime date2 =
-        DateTime(this._selectedDate.year, this._selectedDate.month + 1, 1);
+        DateTime(this._initialDate.year, this._initialDate.month + 1, 1);
 
     /// Setup week-only format
     DateTime now = this._selectedDate;
