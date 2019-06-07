@@ -397,7 +397,7 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
                                   ? widget.todayButtonColor
                                   : widget.dayButtonColor,
                       onPressed: () => _onDayPressed(now),
-                      padding: EdgeInsets.all(widget.dayPadding),
+                      padding: EdgeInsets.all(0),
                       shape: widget.daysHaveCircularBorder == null
                           ? CircleBorder()
                           : widget.daysHaveCircularBorder
@@ -877,7 +877,7 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
     } else {
       return Container(
         height: double.infinity,
-        padding: EdgeInsets.only(bottom: 4.0),
+       // padding: EdgeInsets.only(bottom: 4.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.max,
@@ -905,12 +905,12 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
               widget.markedDateIconBuilder != null) {
             tmp.add(Center(
                 child: new Container(
-              padding: EdgeInsets.only(
+              /*padding: EdgeInsets.only(
                 top: padding + offset,
                 left: padding + offset,
                 right: padding - offset,
                 bottom: padding - offset,
-              ),
+              ),*/
               width: double.infinity,
               height: double.infinity,
               child: widget.markedDateIconBuilder(event),

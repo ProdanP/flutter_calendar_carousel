@@ -56,12 +56,13 @@ class _MyHomePageState extends State<MyHomePage> {
 //  List<DateTime> _markedDate = [DateTime(2018, 9, 20), DateTime(2018, 10, 11)];
   static Widget _eventIcon = new Container(
     decoration: new BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(1000)),
-        border: Border.all(color: Colors.blue, width: 2.0)),
-    child: new Icon(
-      Icons.person,
-      color: Colors.amber,
+        color: Colors.transparent,
+        borderRadius: BorderRadius.all(Radius.circular(4.6)),
+        border: Border.all(color: Colors.blue, width: 1.0)),
+    child: new Container(
+      height: double.infinity,
+      width: double.infinity,
+      color: Colors.transparent,
     ),
   );
 
@@ -220,6 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
         this.setState(() => _currentMonth = DateFormat.yMMM().format(date));
       },
       onlyMarkedDatesCanBeSelected: true,
+      daysHaveCircularBorder: false,
     );
 
     return new Scaffold(
