@@ -363,7 +363,9 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
                   if (widget.onlyMarkedDatesCanBeSelected) {
                     if (widget.markedDatesMap != null) {
                       if (widget.markedDatesMap.events.keys.firstWhere(
-                              (key) => key.day == now.day, orElse: () {
+                              (key) => (key.year == now.year &&
+                                  key.month == now.month &&
+                                  key.day == now.day), orElse: () {
                             return null;
                           }) !=
                           null) {
@@ -693,8 +695,10 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
 
     if (widget.onlyMarkedDatesCanBeSelected) {
       if (widget.markedDatesMap != null) {
-        if (widget.markedDatesMap.events.keys
-                .firstWhere((key) => key.day == picked.day, orElse: () {
+        if (widget.markedDatesMap.events.keys.firstWhere(
+                (key) => (key.year == picked.year &&
+                    key.month == picked.month &&
+                    key.day == picked.day), orElse: () {
               return null;
             }) ==
             null) {
