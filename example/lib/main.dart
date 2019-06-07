@@ -219,6 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
       onCalendarChanged: (DateTime date) {
         this.setState(() => _currentMonth = DateFormat.yMMM().format(date));
       },
+      onlyMarkedDatesCanBeSelected: true,
     );
 
     return new Scaffold(
