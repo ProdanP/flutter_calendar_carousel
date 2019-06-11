@@ -361,7 +361,7 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
                   bool isSelectable = true;
 
                   if (widget.onlyMarkedDatesCanBeSelected) {
-                    if (widget.markedDatesMap != null) {
+                    if (widget.markedDatesMap != null && widget.markedDatesMap.events != null) {
                       if (widget.markedDatesMap.events.keys.firstWhere(
                               (key) => (key.year == now.year &&
                                   key.month == now.month &&
@@ -694,7 +694,7 @@ class _CalendarState<T> extends State<CalendarCarousel<T>> {
             widget.maxSelectedDate.millisecondsSinceEpoch) return;
 
     if (widget.onlyMarkedDatesCanBeSelected) {
-      if (widget.markedDatesMap != null) {
+      if (widget.markedDatesMap != null && widget.markedDatesMap.events != null) {
         if (widget.markedDatesMap.events.keys.firstWhere(
                 (key) => (key.year == picked.year &&
                     key.month == picked.month &&
